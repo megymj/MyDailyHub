@@ -1,27 +1,21 @@
 <script>
-import NotionSignup from './components/NotionSignup.vue'
+import SignUp from './components/Signup.vue'
+import WelcomePage from "@/components/WelcomePage.vue";
 
 export default {
   name: 'App',
   components: {
-    NotionSignup
+    WelcomePage,
+    SignUp
   }
 }
 </script>
 
 <template>
-  <!--  <div id="app">-->
-  <NotionSignup />
-  <!--  </div>-->
+  <router-view/>
 </template>
 
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
