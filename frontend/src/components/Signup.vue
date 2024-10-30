@@ -10,10 +10,10 @@
 
         <div class="d-grid gap-2 mb-4">
           <button class="btn btn-outline-dark" type="button">
-            Continue with Google
+            {{ googleLoginButtonText }}
           </button>
           <button class="btn btn-outline-dark" type="button">
-            Continue with Apple
+            {{ kakaoLoginButtonText }}
           </button>
 <!--          <button class="btn btn-outline-dark" type="button">
             Single sign-on (SSO)
@@ -29,6 +29,9 @@
               v-model="email"
               placeholder="Enter your email address..."
           >
+          <div v-if="email && !isEmailValid" class="text-danger small">
+            Please enter a valid email address.
+          </div>
           <div class="form-text">
             Use an organization email to easily collaborate with teammates
           </div>
@@ -51,9 +54,17 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+
+const googleLoginButtonText = ref("Continue with Google")
+const kakaoLoginButtonText = ref("Continue with Kakao")
 
 const email = ref('')
+
+const isEmailValid = computed(() => {
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  return emailPattern.test(email.value)
+})
 
 const continueSignup = () => {
   console.log('Continuing with email:', email.value)
